@@ -1,17 +1,25 @@
-const mongoose = require('mongoose');
 const { MongoClient } = require('mongodb');
+const mongoose = require('mongoose');
 
 require('dotenv').config({path: `${__dirname}/../config.env`});
-console.log(process.env.ATLAS_URI);
 const connectionString = process.env.ATLAS_URI || "";
-const client = new MongoClient(connectionString);
 
 const db = async () => {
     try {
-        conn = await client.connect();
+        await mongoose.connect(connectionString,
+          {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            dbName: "my_database"
+          });
+        console.log(`Connected to MongoDB Atlas cluster: ${mongoose.connection.host}, database: ${mongoose.connection.db.databaseName}`);
       } catch(e) {
         console.error(e);
     }
+
+    mongoose.connection.on('error', err => {
+      logError(err);
+    });
   };
 
 module.exports = db;
