@@ -7,6 +7,8 @@ const db = require("../db/conn.js");
 // Load Book model
 const Book = require('../models/Book');
 
+// ADD PARAM CHECKING!!!!!!!
+
 // @route GET api/books/test
 // @description tests books route
 // @access Public
@@ -15,56 +17,72 @@ router.get('/test', (req, res) => res.send('book route testing!'));
 // @route GET api/books
 // @description Get all books
 // @access Public
-router.get("/get", async (req, res) => {
+router.get("/all", async (req, res) => {
     try {
         const books = await Book.find({}).limit(5);
         res.json(books);
-      } catch(err) {
+      } catch (err) {
         console.log(err);
-        res.status(404).json(err);
+        res.status(404).json({ nobookfound: 'No Books Found.' });
       }
-
-    // Book.find({})
-    // .then(books => res.json(books))
-    // .catch(err => res.status(404).json({ nobooksfound: 'No Books found' }));
 });
 
-// // @route GET api/books/:id
-// // @description Get single book by id
-// // @access Public
-// router.get('/:id', (req, res) => {
-//   Book.findById(req.params.id)
-//     .then(book => res.json(book))
-//     .catch(err => res.status(404).json({ nobookfound: 'No Book found' }));
-// });
+// @route GET api/books/:id
+// @description Get single book by id
+// @access Public
+router.get('/:id', async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id);
+    res.status(200).json(book);
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({ nobookfound: 'Book Not Found.'});
+  }
+});
 
-// // @route GET api/books
-// // @description add/save book
-// // @access Public
-// router.post('/', (req, res) => {
-//   Book.create(req.body)
-//     .then(book => res.json({ msg: 'Book added successfully' }))
-//     .catch(err => res.status(400).json({ error: 'Unable to add this book' }));
-// });
+// @route POST api/books
+// @description add/save book
+// @access Public
+router.post('/', async (req, res) => {
+  try {
+    const book = Book.create(req.body);
+    await book.save();
+    res.status(200).json({ bookaddsuccess: `Book added successfully. ${book}`});
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({ bookaddfailure: "Unable to add book." });
+  }
+});
 
-// // @route GET api/books/:id
-// // @description Update book
-// // @access Public
-// router.put('/:id', (req, res) => {
-//   Book.findByIdAndUpdate(req.params.id, req.body)
-//     .then(book => res.json({ msg: 'Updated successfully' }))
-//     .catch(err =>
-//       res.status(400).json({ error: 'Unable to update the Database' })
-//     );
-// });
+// @route GET api/books/:id
+// @description Update book
+// @access Public
+router.put('/:id', (req, res) => {
+  try {
+    const book =   Book.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).json({ bookupdatesuccess: `Book updated successfully. ${book}`});
+  } catch (err) {
+    console.log(err)
+    res.status(404).json({ bookupdatefailure: `Book update failed.`});
+  }
+  Book.findByIdAndUpdate(req.params.id, req.body)
+    .then(book => res.json({ msg: 'Updated successfully' }))
+    .catch(err =>
+      res.status(400).json({ error: 'Unable to update the Database' })
+    );
+});
 
-// // @route GET api/books/:id
-// // @description Delete book by id
-// // @access Public
-// router.delete('/:id', (req, res) => {
-//   Book.findByIdAndRemove(req.params.id, req.body)
-//     .then(book => res.json({ mgs: 'Book entry deleted successfully' }))
-//     .catch(err => res.status(404).json({ error: 'No such a book' }));
-// });
+// @route GET api/books/:id
+// @description Delete book by id
+// @access Public
+router.delete('/:id', (req, res) => {
+  try {
+    const book = Book.findByIdAndRemove(req.params.id, req.body);
+    res.status(202).json({ bookdeletionsuccess: `Book Successfully Deleted. ${book}` });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ bookdeletionfailure: `Unable to delete book.`});
+  }
+});
 
 module.exports = router;
