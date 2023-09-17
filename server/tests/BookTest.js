@@ -30,7 +30,7 @@ describe('Test /books', () => {
         });
     });
 
-    describe('GET /id book', () => {
+    describe('GET /:id book', () => {
         it('should return book with id == id', (done) => {
             chai.request(server)
             .get(`/books/${id}`)
@@ -46,17 +46,27 @@ describe('Test /books', () => {
         });
     });
 
-    describe('GET /title book', () => {
-        it('should return books with title == title', (done) => {
+    describe('GET /title/:title book', () => {
+        it('should return books with matching or like titles', (done) => {
             chai.request(server)
-            .get(`/books/${id}`)
+            .get(`/books/title/lord of the rings`)
             .end((err, res) => {
                 res.should.have.status(200);
-                res.body.should.be.a('object');
-                res.body.should.have.property('author');
-                res.body.author.should.be.eql('Jean Leveille');
-                res.body.should.have.property('title');
-                res.body.title.should.be.eql('Les oiseaux gourmands');
+                res.body.should.be.a('array');
+                res.body.length.should.be.eql(13);
+                done();
+            });
+        });
+    });
+
+    describe('GET /author/:author book', () => {
+        it('should return books with matching or like authors', (done) => {
+            chai.request(server)
+            .get(`/books/author/j.k. rowling`)
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('array');
+                res.body.length.should.be.eql(6);
                 done();
             });
         });

@@ -14,7 +14,9 @@ const BookSchema = new mongoose.Schema({
     pages: Number,
     rating: Number,
     reviews: Number,
-    title: String,
+    title:
+    { type: String,
+    required: true },
     totalratings: Number,
 });
 

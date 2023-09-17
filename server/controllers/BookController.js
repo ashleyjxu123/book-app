@@ -28,10 +28,18 @@ module.exports = {
     async getBookByTitle(req, res) {
         try {
             // $regex with option i ignores case
-            const t = req.params.title;
-            // new RegExp(req.params.title, 'i')
-            console.log(t);
-            const books = await Book.find({title: {$regex: '/' + t + '/im'}});
+            const books = await Book.find({title: new RegExp(req.params.title, 'i')});
+            res.status(200).json(books);
+          } catch (err) {
+            console.log(err);
+            res.status(404).json({ nobookfound: `Book Not Found`, err});
+          }
+    },
+
+    async getBookByAuthor(req, res) {
+        try {
+            // $regex with option i ignores case
+            const books = await Book.find({author: new RegExp(req.params.author, 'i')});
             res.status(200).json(books);
           } catch (err) {
             console.log(err);
