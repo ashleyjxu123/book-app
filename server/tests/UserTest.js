@@ -8,22 +8,23 @@ const User = require('../models/User.js');
 const server = require('../server.js');
 
 const should = chai.should();
+const id = '650770c8d5b618c564de210d';
 
 chai.use(chaiHttp);
 
-describe('Test /books', () => {
+describe('Test /users', () => {
     before('before', () => {
         console.log('Running User Tests.');
     });
 
     describe('GET /all users', () => {
-        it('should get all users (none. there are no users)', (done) => {
+        it('should get all users (there should be 1 user)', (done) => {
             chai.request(server)
             .get('/users/all')
             .end((err, res) => {
                   res.should.have.status(200);
                   res.body.should.be.a('array');
-                  res.body.length.should.be.eql(0);
+                  res.body.length.should.be.eql(1);
               done();
             });
         });
@@ -37,7 +38,7 @@ describe('Test /books', () => {
                 res.should.have.status(200);
                 res.body.should.be.a('object');
                 res.body.should.have.property('full_name');
-                res.body.author.should.be.eql('poopoo farthead');
+                res.body.full_name.should.be.eql('poopoo farthead');
                 done();
             });
         });
@@ -46,7 +47,7 @@ describe('Test /books', () => {
     describe('GET /name/:name user', () => {
         it('should return books with matching or like names', (done) => {
             chai.request(server)
-            .get(`/books/title/poopoo farthead`)
+            .get(`/users/name/poopoo farthead`)
             .end((err, res) => {
                 res.should.have.status(200);
                 res.body.should.be.a('array');
@@ -59,7 +60,7 @@ describe('Test /books', () => {
     describe('GET /username/:username user', () => {
         it('should return books with matching or like usernames', (done) => {
             chai.request(server)
-            .get(`/books/author/jarjar1000`)
+            .get(`/users/username/jarjar1000`)
             .end((err, res) => {
                 res.should.have.status(200);
                 res.body.should.be.a('array');
@@ -97,6 +98,7 @@ describe('Test /books', () => {
                 username: "heyitsbob123",
                 email: "bobmcbob123@gmail.com",
                 password: "b0bmcb0b",
+                zip_code: "06903",
             }
 
             chai.request(server)

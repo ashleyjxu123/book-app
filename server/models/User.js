@@ -17,7 +17,8 @@ const UserSchema = new mongoose.Schema({
     },
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     password: {
         type: String,
@@ -25,10 +26,11 @@ const UserSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     zip_code: {
-        type: Number,
+        type: String,
         required: true
     },
     books_listed: [{
@@ -37,10 +39,10 @@ const UserSchema = new mongoose.Schema({
     books_liked: [{
         type: String
     }], //ids of books (string ids?)
-    books_saved: Array,
-    books_out: Array,
-    books_in: Array,
-    past_books: Array,
+    books_out: [String],
+    books_in: [String],
+    past_books: [String],
+    friends: [String],
     date_created: Date
 });
 
