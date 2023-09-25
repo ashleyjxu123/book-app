@@ -8,7 +8,14 @@ const ListedBookSchema = new mongoose.Schema({
   user_id: {
     type: String,
     required: true
-  }
+  },
+  date_created: {
+    type: Date,
+    required: true
+  },
+
+  // may need to add more info
+  // user description, type of listing, state of book, image, date_created
 });
 
 

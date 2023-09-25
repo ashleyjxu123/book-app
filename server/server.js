@@ -4,6 +4,7 @@ const db = require("./db/conn.js");
 const books = require("./routes/books.js");
 const blahs = require("./routes/blahs.js");
 const users = require("./routes/users.js");
+const listed_books = require("./routes/listed_books.js");
 
 const PORT = process.env.PORT || 5050;
 const app = express();
@@ -16,8 +17,8 @@ app.use(express.json());
 db();
 
 app.use("/books", books);
-app.use("/users", users)
-
+app.use("/users", users);
+app.use("/listedbooks", listed_books);
 // for testing
 app.use("/blahs", blahs);
 

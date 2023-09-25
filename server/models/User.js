@@ -35,11 +35,11 @@ const UserSchema = new mongoose.Schema({
     },
     books_listed: [{
         type: String
-    }], //ids of books (string ids?)
+    }], //ids of books (string ids?) - id -> listed_book
     books_liked: [{
         type: String
-    }], //ids of books (string ids?)
-    books_out: [String],
+    }], //ids of books (string ids?) - id -> listed_book
+    books_out: [String], // array of book ids or listing ids?
     books_in: [String],
     past_books: [String],
     friends: [String],
