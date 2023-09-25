@@ -1,7 +1,11 @@
+// models/Book.js
+
 const mongoose = require('mongoose');
 
 const BookSchema = new mongoose.Schema({
-    author: String,
+    author: 
+    { type: String,
+    required: true },
     bookformat: String,
     desc: String,
     genre: String,
@@ -12,7 +16,9 @@ const BookSchema = new mongoose.Schema({
     pages: Number,
     rating: Number,
     reviews: Number,
-    title: String,
+    title:
+    { type: String,
+    required: true },
     totalratings: Number,
 });
 
