@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    full_name: {
+    full_name: { //do we need or are we gonna just make this ourselves when they input first and last
         type: String,
         required: true
     },
@@ -27,7 +27,16 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    books_listed: Array,
+    zip_code: {
+        type: Number,
+        required: true
+    },
+    books_listed: [{
+        type: String
+    }], //ids of books (string ids?)
+    books_liked: [{
+        type: String
+    }], //ids of books (string ids?)
     books_saved: Array,
     books_out: Array,
     books_in: Array,
