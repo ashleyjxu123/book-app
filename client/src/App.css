@@ -36,3 +36,34 @@
     transform: rotate(360deg);
   }
 }
+
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 30px 0px 30px;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+
+.nav-buttons > a {
+  padding: 5px;
+}
+
+#header-search-bar {
+  margin-right: 10px;
+  width: 170px;
+}
+
+
+.right-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

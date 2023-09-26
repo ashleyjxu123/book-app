@@ -1,13 +1,12 @@
 import './App.css';
 import { Route, Routes } from "react-router-dom";
-import Header from './components/Header';
+import NavBar from './components/NavBar';
 
 
 function App() {
   return (
     <div className="wrapper">
-      <h1>Title</h1>
-      <Header />
+      <NavBar />
       {/* <Routes>
         <Route path="/" element={<Header />} />
       </Routes> */}
