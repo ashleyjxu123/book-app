@@ -1,21 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router";
-import './index.css';
+import './BookListing.css';
 
 const Listing = (props) => {
     const book = props.book;
     const user = props.user;
+    const listing = props.listing;
     return (
         <div className='booklisting-container'>
-            <img 
-                src={book.img}
-                alt={book.title}
-                height={200}
-            />
 
-            <h1>{book.title}</h1>
-            <h3>{book.author}</h3>
-            <p>{book.desc}</p>
+            <div className="leftblock">
+                <img 
+                    src={book.img}
+                    alt={book.title}
+                    height={350}
+                />
+                <h3>{listing.type}</h3>
+            </div>
+            <div className='rightblock'>
+                <div className='userinfo-container'>
+                    <img 
+                            src="https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png"
+                            alt="profile pic"
+                            height={80}
+                        />
+                    <div className='profile'>
+                        <h2>@{user.username}</h2>
+                        <p>{user.zip_code}</p>
+                        </div>
+                </div>
+
+                <div className="bookinfo-container">
+                    <h1>{book.title}</h1>
+                    <h3>{book.author}</h3>
+
+                    <div className="content hideContent">
+                        <p>{book.desc}</p>
+                    </div>
+                    <div className="show-more">
+                        <a href="#">Show more</a>
+                    </div>
+
+                </div> 
+            </div>
 
         </div>
 
@@ -106,7 +133,6 @@ export default function BookListing() {
 
     return (
         <div>
-          <h3>Book</h3>
           <div className="listing-component">
             <Listing
                 listing={listing}

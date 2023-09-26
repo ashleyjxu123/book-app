@@ -43,6 +43,9 @@ const UserSchema = new mongoose.Schema({
     books_in: [String],
     past_books: [String],
     friends: [String],
+    profile_img: {
+        type: String
+    },
     date_created: Date
 });
 
