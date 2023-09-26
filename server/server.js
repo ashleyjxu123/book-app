@@ -16,11 +16,18 @@ app.use(express.json());
 // start database 
 db();
 
+var path = require('path');
+
 app.use("/books", books);
 app.use("/users", users);
 app.use("/listedbooks", listed_books);
 // for testing
 app.use("/blahs", blahs);
+
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve('../client/public/index.html'));
+})
+
 
 // start the Express server
 app.listen(PORT, () => {

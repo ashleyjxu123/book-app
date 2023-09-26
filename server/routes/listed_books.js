@@ -30,6 +30,6 @@ router.put('/:id', ListedBookController.updateListedBook);
 // @route DELETE api/listedbooks/:id
 // @description Delete book by id
 // @access Public
-router.delete('/:id', BookController.deleteListedBook);
+router.delete('/:id', ListedBookController.deleteListedBook);
 
 module.exports = router;
