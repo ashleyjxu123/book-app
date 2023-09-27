@@ -6,6 +6,8 @@ const Listing = (props) => {
     const book = props.book;
     const user = props.user;
     const listing = props.listing;
+    const [showMore, setShowMore] = useState(false);
+
     return (
         <div className='booklisting-container'>
 
@@ -34,11 +36,11 @@ const Listing = (props) => {
                     <h1>{book.title}</h1>
                     <h3>{book.author}</h3>
 
-                    <div className="content hideContent">
-                        <p>{book.desc}</p>
-                    </div>
-                    <div className="show-more">
-                        <a href="#">Show more</a>
+                    <div className="desc">
+                        {showMore ? book.desc : `${book.desc?.substr(0,300)}...`}
+                        <button className="btn" onClick={() => setShowMore(!showMore)}>
+                        {showMore ? "Show less" : "  Show more"}
+                        </button>
                     </div>
 
                 </div> 
