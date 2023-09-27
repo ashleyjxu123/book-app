@@ -24,10 +24,6 @@ app.use("/listedbooks", listed_books);
 // for testing
 app.use("/blahs", blahs);
 
-app.get('/', (req, res) => {
-  res.sendFile(path.resolve('../client/public/index.html'));
-})
-
 
 // start the Express server
 app.listen(PORT, () => {

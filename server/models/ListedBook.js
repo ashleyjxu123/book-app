@@ -9,10 +9,12 @@ const ListedBookSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  type: String,
   date_created: {
     type: Date,
     required: true
   },
+  img: String,
 
   // may need to add more info
   // user description, type of listing, state of book, image, date_created

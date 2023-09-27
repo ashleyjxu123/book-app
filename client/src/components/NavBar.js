@@ -1,20 +1,24 @@
 import React from 'react';
+import {Outlet, Link} from "react-router-dom";
 
 function NavBar() {
   return (
-    <div className="nav-bar">
-      <h1>bibli</h1>
-      <div class="right-header">
-        <div>
-          <input id="header-search-bar" type="text" placeholder="search"></input>
-        </div>
-        <div className="nav-buttons">
-          <a href="">notifs</a>
-          <a href="">messages</a>
-          <a href="">profile</a>
+    <>
+      <div className="nav-bar">
+        <h1>bibli</h1>
+        <div className="right-header">
+          <div>
+            <input id="header-search-bar" type="text" placeholder="search"></input>
+          </div>
+          <div className="nav-buttons">
+            <Link to="/">notifs</Link>
+            <Link to="/">messages</Link>
+            <Link to="/">profile</Link>
+          </div>
         </div>
       </div>
-    </div>
+      <Outlet />
+    </>
   );
 }
 
