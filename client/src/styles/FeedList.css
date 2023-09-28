@@ -1,0 +1,120 @@
+/* STYLING FOR FEED ELEMENTS ON HOME PAGE */
+
+
+/* START: big container */
+.wrapper-feed h2 {
+margin: 0 0 0 50px;
+}
+
+.feed-container {
+  width: 500px;
+  margin: 10px 0 0 50px;
+  padding: 10px 0 0 0px;
+  /* border: 3px solid rgb(209, 209, 209); */
+  border-radius: 5px;
+}
+/* END */
+
+/* START: individual element container size */
+.feed-single {
+  display: flex;
+  flex-direction: row;
+  margin: 5px 0 0 10px;
+  padding: 10px;
+  /* height: 150px; */
+  border: 3px solid rgb(219, 203, 203);
+  border-radius: 5px;
+  /* align-items: center; */
+  background-color: rgb(255, 248, 248);
+  /* width: 550px; */
+}
+/* END */
+
+/* START: image container on left of feed element */
+.image-container {
+  display: flex;
+  flex-direction: column;
+  width: 60px;
+  margin: 0 5px 0 10px;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.image-container > img {
+  padding-top: 3px;
+  width: 60px;
+  border-radius: 0 5px 5px 0;
+  box-shadow: 3px 3px 5px grey;
+}
+
+.image-container > h3 {
+  margin-top: 5px;
+  font-size: 12px;
+  width: 40px;
+  text-align: center;
+  font-weight: normal;
+}
+/* END */
+
+/* START: right container */
+.feed-right-container {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+}
+/* END */
+
+/* START: text container */
+.feed-text-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+/* END */
+
+/* START: user profile photo and username */
+.user-info {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 5px;
+  padding-top: 0px;
+}
+
+.user-info > img {
+  height: 25px;
+  border-radius: 50%;
+}
+
+.user-info > h3 {
+  font-size: 13px;
+  margin-left: 3px;
+}
+/* END */
+
+/* START: book info text container */
+.book-info-container {
+  margin: 0 0 0 8px;
+}
+
+.book-info-container > h2 { /* book title */
+  font-size: 14px;
+  margin: 0 0 0 0;
+}
+
+
+.book-info-container > h3 { /* author  */
+  font-size: 12px;
+  font-weight: normal;
+  margin: 3px 0 0 0;
+}
+/* END */
+
+/* START: like button */
+/* .feed-like-button {
+
+} */
+/* END */
+
+.location-icon {
+  height: 10px;
+}

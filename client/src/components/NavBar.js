@@ -11,9 +11,9 @@ function NavBar() {
             <input id="header-search-bar" type="text" placeholder="search"></input>
           </div>
           <div className="nav-buttons">
-            <Link to="/">notifs</Link>
-            <Link to="/">messages</Link>
-            <Link to="/">profile</Link>
+            <Link to="/"><img src="https://www.svgrepo.com/show/326725/notifications-circle-outline.svg" className="nav-notifs-icon" alt="bell inside circle"/></Link>
+            <Link to="/"><img src="https://cdn3.iconfinder.com/data/icons/user-interface-web-1/550/web-circle-circular-round_67-512.png" className="nav-messages-icon" alt="message bubble"/></Link>
+            <Link to="/"><img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Silhouette of a person" className="nav-pfp"/></Link>
           </div>
         </div>
       </div>
