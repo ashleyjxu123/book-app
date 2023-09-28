@@ -20,7 +20,7 @@ var path = require('path');
 
 app.use("/books", books);
 app.use("/users", users);
-app.use("/listedbooks", listed_books);
+app.use("/listings", listed_books);
 // for testing
 app.use("/blahs", blahs);
 

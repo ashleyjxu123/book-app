@@ -119,7 +119,7 @@ export default function FeedList() {
   useEffect(() => {
     async function getListings() {
         // ***WILL NEED TO FIX AFTER MERGE -- changed listedbooks to listings in url
-        const response = await fetch(`http://localhost:5050/listedbooks/all`);
+        const response = await fetch(`http://localhost:5050/listings/all`);
     
         if (!response.ok) {
             const message = `An error occurred, Listing: ${response.statusText}`;
