@@ -3,61 +3,52 @@ import { useParams } from "react-router";
 import './BookListing.css';
 
 // A single element for a listing.
-const ListingElement = (props) => {
+function ListingElement (props) {
     const book = props.book;
     const info = book.volumeInfo;
-    // const user = props.user;
+    const user = props.user;
     const listing = props.listing;
     const [showMore, setShowMore] = useState(false);
 
-    return(
-        <div>
-            <h1>{listing.book_id}</h1>
-            <h1>{info}</h1>
-            <h1>{listing.user_id}</h1>
+    return (
+        <div className='booklisting-container'>
+
+            <div className="leftblock">
+                <img 
+                    src={book.volumeInfo.imageLinks.thumbnail}
+                    alt={book.volumeInfo.title}
+                    height={350}
+                />
+                <h3>{listing.type}</h3>
+            </div>
+            <div className='rightblock'>
+                <div className='userinfo-container'>
+                    <img 
+                            src="https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png"
+                            alt="profile pic"
+                            height={80}
+                        />
+                    <div className='profile'>
+                        <h2>@{user.username}</h2>
+                        <p>{user.zip_code}</p>
+                        </div>
+                </div>
+
+                <div className="bookinfo-container">
+                    <h1>{book.volumeInfo.title}</h1>
+                    <h3>{book.volumeInfo.author}</h3>
+
+                    <div className="desc">
+                        {showMore ? book.volumeInfo.description : `${book.volumeInfo.description?.substr(0,300)}...`}
+                        <button className="btn" onClick={() => setShowMore(!showMore)}>
+                        {showMore ? "Show less" : "  Show more"}
+                        </button>
+                    </div>
+
+                </div> 
+            </div>
+
         </div>
-
-
-
-    // return (
-    //     <div className='booklisting-container'>
-
-    //         <div className="leftblock">
-    //             <img 
-    //                 src={book.volumeInfo.imageLinks.thumbnail}
-    //                 alt={book.volumeInfo.title}
-    //                 height={350}
-    //             />
-    //             <h3>{listing.type}</h3>
-    //         </div>
-    //         <div className='rightblock'>
-    //             <div className='userinfo-container'>
-    //                 <img 
-    //                         src="https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png"
-    //                         alt="profile pic"
-    //                         height={80}
-    //                     />
-    //                 <div className='profile'>
-    //                     <h2>@{user.username}</h2>
-    //                     <p>{user.zip_code}</p>
-    //                     </div>
-    //             </div>
-
-    //             <div className="bookinfo-container">
-    //                 <h1>{book.volumeInfo.title}</h1>
-    //                 <h3>{book.volumeInfo.author}</h3>
-
-    //                 <div className="desc">
-    //                     {showMore ? book.volumeInfo.description : `${book.volumeInfo.description?.substr(0,300)}...`}
-    //                     <button className="btn" onClick={() => setShowMore(!showMore)}>
-    //                     {showMore ? "Show less" : "  Show more"}
-    //                     </button>
-    //                 </div>
-
-    //             </div> 
-    //         </div>
-
-    //     </div>
 
     );
     
@@ -93,10 +84,9 @@ export default function BookListing() {
         }
 
         async function getBook(id) {
-            console.log(id);
+            console.log("book id", id);
 
             const response = await fetch(`http://localhost:5050/books/${id}`);
-        
             if (!response.ok) {
                 const message = `An error occurred, Book: ${response.statusText}`;
                 window.alert(message);
@@ -133,10 +123,10 @@ export default function BookListing() {
         async function getAll() {
             const tempLoadedListing = await getListing();
             const tempLoadedBook = await getBook(tempLoadedListing.book_id);
-            // const tempLoadedUser = await getUser(tempLoadedListing.user_id);
+            const tempLoadedUser = await getUser(tempLoadedListing.user_id);
             setListing(tempLoadedListing);
             setBook(tempLoadedBook);
-            // setUser(tempLoadedUser);
+            setUser(tempLoadedUser);
         }
     
          getAll();
@@ -144,13 +134,17 @@ export default function BookListing() {
         return;
     }, [params.id]);
 
-    return (
+    if ((typeof book.volumeInfo) === "undefined") {
+        return;
+    }
+
+    else return (
         <div>
-          <div className="listing-component">
+          <div className="listing-component">            
             <ListingElement
                 listing={listing}
                 book={book}
-                // user={user}
+                user={user}
             />
           </div>
         </div>
