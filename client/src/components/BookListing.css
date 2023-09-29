@@ -1,0 +1,109 @@
+.listing-component{
+    text-align:left;
+    font-family:'Helvetica';
+}
+
+.booklisting-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 100px;
+}
+
+.booklisting-container p {
+    color: darkslategrey;
+}
+
+.leftblock {
+    padding-right: 120px;
+    padding-left: 100px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.leftblock p {
+    margin: 5px;
+    font-size: 150%;
+}
+
+.leftblock img {
+    border-top-right-radius: 5%;
+    border-bottom-right-radius: 5%;
+    box-shadow: 5px 5px 30px grey;
+}
+
+.rightblock {
+    padding-right: 50px;
+    width: 40%;
+}
+
+.userinfo-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.userinfo-container img {
+    border-radius: 50%;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 15px;
+}
+
+.profile h2 {
+    margin: 0px;
+}
+
+.profile p {
+    margin: 0px;
+    padding-left: 22px;
+    padding-top: 5px;
+}
+.bookinfo-container h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.bookinfo-container h3{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.desc {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* .btn-container{
+    height:44px;
+    width:166.23px;
+} */
+
+
+/* .hideContent {
+    height: 6em;
+    line-height: 1em;
+    overflow: hidden;
+}
+
+.showContent {
+    line-height: 1em;
+    height: auto;
+} */
+
+button {
+    user-select:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    color: black;
+    font-weight: bold;
+    cursor:pointer;
+    border:none;
+    padding: 0px;
+    padding-top: 10px;
+    background: none;
+}
