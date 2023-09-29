@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router";
 import './BookListing.css';
 
-const Listing = (props) => {
+// A single element for a listing.
+const ListingElement = (props) => {
     const book = props.book;
     const user = props.user;
     const listing = props.listing;
@@ -52,13 +53,15 @@ const Listing = (props) => {
     
 } 
 
+// Fetches user and book information from specified listing using URl parameter
 export default function BookListing() {
     const [listing, setListing] = useState([]);
     const [book, setBook] = useState([]);
     const [user, setUser] = useState([]);
     const params = useParams();
 
-    // This method fetches the records from the database.
+    // This method fetches the listing, book, and user information from the database.
+    // It will execute after rendering.
     useEffect(() => {
         async function getListing() {
             const id = params.id.toString();
@@ -136,7 +139,7 @@ export default function BookListing() {
     return (
         <div>
           <div className="listing-component">
-            <Listing
+            <ListingElement
                 listing={listing}
                 book={book}
                 user={user}
