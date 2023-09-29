@@ -1,6 +1,4 @@
 // controllers/GoogleBookController.js
-const key = process.env.BOOKS_API_KEY || "";
-const express = require('express');
 const axios = require('axios');
 
 module.exports = {
