@@ -5,49 +5,59 @@ import './BookListing.css';
 // A single element for a listing.
 const ListingElement = (props) => {
     const book = props.book;
-    const user = props.user;
+    const info = book.volumeInfo;
+    // const user = props.user;
     const listing = props.listing;
     const [showMore, setShowMore] = useState(false);
 
-    return (
-        <div className='booklisting-container'>
-
-            <div className="leftblock">
-                <img 
-                    src={book.img}
-                    alt={book.title}
-                    height={350}
-                />
-                <h3>{listing.type}</h3>
-            </div>
-            <div className='rightblock'>
-                <div className='userinfo-container'>
-                    <img 
-                            src="https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png"
-                            alt="profile pic"
-                            height={80}
-                        />
-                    <div className='profile'>
-                        <h2>@{user.username}</h2>
-                        <p>{user.zip_code}</p>
-                        </div>
-                </div>
-
-                <div className="bookinfo-container">
-                    <h1>{book.title}</h1>
-                    <h3>{book.author}</h3>
-
-                    <div className="desc">
-                        {showMore ? book.desc : `${book.desc?.substr(0,300)}...`}
-                        <button className="btn" onClick={() => setShowMore(!showMore)}>
-                        {showMore ? "Show less" : "  Show more"}
-                        </button>
-                    </div>
-
-                </div> 
-            </div>
-
+    return(
+        <div>
+            <h1>{listing.book_id}</h1>
+            <h1>{info}</h1>
+            <h1>{listing.user_id}</h1>
         </div>
+
+
+
+    // return (
+    //     <div className='booklisting-container'>
+
+    //         <div className="leftblock">
+    //             <img 
+    //                 src={book.volumeInfo.imageLinks.thumbnail}
+    //                 alt={book.volumeInfo.title}
+    //                 height={350}
+    //             />
+    //             <h3>{listing.type}</h3>
+    //         </div>
+    //         <div className='rightblock'>
+    //             <div className='userinfo-container'>
+    //                 <img 
+    //                         src="https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png"
+    //                         alt="profile pic"
+    //                         height={80}
+    //                     />
+    //                 <div className='profile'>
+    //                     <h2>@{user.username}</h2>
+    //                     <p>{user.zip_code}</p>
+    //                     </div>
+    //             </div>
+
+    //             <div className="bookinfo-container">
+    //                 <h1>{book.volumeInfo.title}</h1>
+    //                 <h3>{book.volumeInfo.author}</h3>
+
+    //                 <div className="desc">
+    //                     {showMore ? book.volumeInfo.description : `${book.volumeInfo.description?.substr(0,300)}...`}
+    //                     <button className="btn" onClick={() => setShowMore(!showMore)}>
+    //                     {showMore ? "Show less" : "  Show more"}
+    //                     </button>
+    //                 </div>
+
+    //             </div> 
+    //         </div>
+
+    //     </div>
 
     );
     
@@ -103,8 +113,6 @@ export default function BookListing() {
         }
 
         async function getUser(id) {
-            console.log(id);
-
             const response = await fetch(`http://localhost:5050/users/${id}`);
         
             if (!response.ok) {
@@ -125,13 +133,13 @@ export default function BookListing() {
         async function getAll() {
             const tempLoadedListing = await getListing();
             const tempLoadedBook = await getBook(tempLoadedListing.book_id);
-            const tempLoadedUser = await getUser(tempLoadedListing.user_id);
+            // const tempLoadedUser = await getUser(tempLoadedListing.user_id);
             setListing(tempLoadedListing);
             setBook(tempLoadedBook);
-            setUser(tempLoadedUser);
+            // setUser(tempLoadedUser);
         }
     
-        getAll();
+         getAll();
     
         return;
     }, [params.id]);
@@ -142,7 +150,7 @@ export default function BookListing() {
             <ListingElement
                 listing={listing}
                 book={book}
-                user={user}
+                // user={user}
             />
           </div>
         </div>

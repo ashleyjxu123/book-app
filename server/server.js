@@ -4,7 +4,6 @@ const db = require("./db/conn.js");
 const books = require("./routes/books.js");
 const users = require("./routes/users.js");
 const listed_books = require("./routes/listed_books.js");
-const googlebooks = require("./routes/googlebooks.js");
 
 const PORT = process.env.PORT || 5050;
 const app = express();
@@ -21,8 +20,7 @@ var path = require('path');
 app.use("/books", books);
 app.use("/users", users);
 app.use("/listings", listed_books);
-// for testing
-app.use("/googlebooks", googlebooks);
+
 
 
 // start the Express server

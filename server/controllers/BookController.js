@@ -1,84 +1,45 @@
 // controllers/BookController.js
-
-const Book = require('../models/Book');
-
-// Add param checking
+const axios = require('axios');
 
 module.exports = {
-    async getAllBooks(req, res) {
-        try {
-            const books = await Book.find({}).limit(5);
-            res.json(books);
-        } catch (err) {
-            console.log(err);
-            res.status(404).json({ nobookfound: `No Books Found.`, err });
-        }
-    },
-
     async getBookById(req, res) {
-        try {
-            const book = await Book.findById(req.params.id);
-            res.status(200).json(book);
-          } catch (err) {
-            console.log(err);
-            res.status(404).json({ nobookfound: `Book Not Found`, err});
-          }
-    },
+        await axios.get(
+            `https://www.googleapis.com/books/v1/volumes/${req.params.id}`
+        ).then(function(response) {
+            res.send(response.data);
+        }).catch(function(error) {
+            res.send({
+                status: '500',
+                message: error
+            })
+        });
+    }, 
 
     async getBookByTitle(req, res) {
-        try {
-            // $regex with option i ignores case
-            const books = await Book.find({title: new RegExp(req.params.title, 'i')});
-            res.status(200).json(books);
-          } catch (err) {
-            console.log(err);
-            res.status(404).json({ nobookfound: `Book Not Found`, err});
-          }
-    },
+        const title = encodeURIComponent(req.params.title);
+        await axios.get(
+            `https://www.googleapis.com/books/v1/volumes?q=intitle:${title}`
+        ).then(function(response) {
+            res.send(response.data);
+        }).catch(function(error) {
+            res.send({
+                status: '500',
+                message: error
+            })
+        });
+    }, 
 
     async getBookByAuthor(req, res) {
-        try {
-            // $regex with option i ignores case
-            const books = await Book.find({author: new RegExp(req.params.author, 'i')});
-            res.status(200).json(books);
-          } catch (err) {
-            console.log(err);
-            res.status(404).json({ nobookfound: `Book Not Found`, err});
-          }
-    },
-
-    async createBook(req, res) {
-        try {
-            //const {author, bookformat, desc, genre, img, isbn, isbn13, link, pages, rating, reviews, title, totalratings} = req.body;
-
-            const book = new Book(req.body);
-            await book.save();
-            res.status(200).json({ bookaddsuccess: `Book added successfully`, book});
-          } catch (err) {
-            // console.log(err);
-            res.status(404).json({ bookaddfailure: `Unable to add book`, err });
-          }
-    },
-
-    async updateBook(req, res) {
-        try {
-            const book = Book.findByIdAndUpdate(req.params.id, req.body);
-            res.status(200).json({ bookupdatesuccess: `Book updated successfully.`, book});
-          } catch (err) {
-            console.log(err)
-            res.status(404).json({ bookupdatefailure: `Book update failed.`});
-          }
-    },
-
-    async deleteBook(req, res) {
-        try {
-            const book = Book.findByIdAndRemove(req.params.id, req.body);
-            res.status(202).json({ bookdeletionsuccess: `Book Successfully Deleted`, book });
-          } catch (err) {
-            console.log(err);
-            res.status(400).json({ bookdeletionfailure: `Unable to delete book.`});
-          }
+        const author = encodeURIComponent(req.params.author);
+        await axios.get(
+            `https://www.googleapis.com/books/v1/volumes?q=intitle:${author}`
+        ).then(function(response) {
+            res.send(response.data);
+        }).catch(function(error) {
+            res.send({
+                status: '500',
+                message: error
+            })
+        });
     }
-
-
-};
+}
