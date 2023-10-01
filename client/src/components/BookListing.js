@@ -36,7 +36,7 @@ function ListingElement (props) {
 
                 <div className="bookinfo-container">
                     <h1>{book.volumeInfo.title}</h1>
-                    <h3>{book.volumeInfo.author}</h3>
+                    <h3>{book.volumeInfo.authors[0]}</h3>
 
                     <div className="desc">
                         {showMore ? book.volumeInfo.description : `${book.volumeInfo.description?.substr(0,300)}...`}
