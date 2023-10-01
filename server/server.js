@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const db = require("./db/conn.js");
 const books = require("./routes/books.js");
-const blahs = require("./routes/blahs.js");
 const users = require("./routes/users.js");
 const listed_books = require("./routes/listed_books.js");
 
@@ -21,8 +20,7 @@ var path = require('path');
 app.use("/books", books);
 app.use("/users", users);
 app.use("/listings", listed_books);
-// for testing
-app.use("/blahs", blahs);
+
 
 
 // start the Express server

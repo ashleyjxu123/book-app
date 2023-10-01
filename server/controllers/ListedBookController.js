@@ -22,7 +22,7 @@ module.exports = {
             res.status(200).json(book);
           } catch (err) {
             console.log(err);
-            res.status(404).json({ nolistingsfound: `Book Not Found.`, err});
+            res.status(404).json({ nolistingsfound: `Listing Not Found.`, err});
           }
     },
 
@@ -51,9 +51,9 @@ module.exports = {
     async deleteListedBook(req, res) {
         try {
             const book = await ListedBook.findByIdAndRemove(req.params.id, req.body);
-            res.status(202).json({ userdeletionsuccess: `User Successfully Deleted`, user });
+            res.status(202).json({ userdeletionsuccess: `Listing Successfully Deleted`, user });
           } catch (err) {
-            res.status(400).json({ userdeletionfailure: `Unable to delete user.`, err});
+            res.status(400).json({ userdeletionfailure: `Unable to delete Listing.`, err});
           }
     }
 

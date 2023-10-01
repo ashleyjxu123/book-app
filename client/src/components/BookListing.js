@@ -3,8 +3,9 @@ import { useParams } from "react-router";
 import './BookListing.css';
 
 // A single element for a listing.
-const ListingElement = (props) => {
+function ListingElement (props) {
     const book = props.book;
+    const info = book.volumeInfo;
     const user = props.user;
     const listing = props.listing;
     const [showMore, setShowMore] = useState(false);
@@ -14,8 +15,8 @@ const ListingElement = (props) => {
 
             <div className="leftblock">
                 <img 
-                    src={book.img}
-                    alt={book.title}
+                    src={book.volumeInfo.imageLinks.thumbnail}
+                    alt={book.volumeInfo.title}
                     height={350}
                 />
                 <h3>{listing.type}</h3>
@@ -34,11 +35,11 @@ const ListingElement = (props) => {
                 </div>
 
                 <div className="bookinfo-container">
-                    <h1>{book.title}</h1>
-                    <h3>{book.author}</h3>
+                    <h1>{book.volumeInfo.title}</h1>
+                    <h3>{book.volumeInfo.author}</h3>
 
                     <div className="desc">
-                        {showMore ? book.desc : `${book.desc?.substr(0,300)}...`}
+                        {showMore ? book.volumeInfo.description : `${book.volumeInfo.description?.substr(0,300)}...`}
                         <button className="btn" onClick={() => setShowMore(!showMore)}>
                         {showMore ? "Show less" : "  Show more"}
                         </button>
@@ -83,10 +84,9 @@ export default function BookListing() {
         }
 
         async function getBook(id) {
-            console.log(id);
+            console.log("book id", id);
 
             const response = await fetch(`http://localhost:5050/books/${id}`);
-        
             if (!response.ok) {
                 const message = `An error occurred, Book: ${response.statusText}`;
                 window.alert(message);
@@ -103,8 +103,6 @@ export default function BookListing() {
         }
 
         async function getUser(id) {
-            console.log(id);
-
             const response = await fetch(`http://localhost:5050/users/${id}`);
         
             if (!response.ok) {
@@ -131,14 +129,18 @@ export default function BookListing() {
             setUser(tempLoadedUser);
         }
     
-        getAll();
+         getAll();
     
         return;
     }, [params.id]);
 
-    return (
+    if ((typeof book.volumeInfo) === "undefined") {
+        return;
+    }
+
+    else return (
         <div>
-          <div className="listing-component">
+          <div className="listing-component">            
             <ListingElement
                 listing={listing}
                 book={book}
