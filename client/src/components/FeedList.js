@@ -14,6 +14,8 @@ const FeedElement = (props) => {
 
       const response = await fetch(`http://localhost:5050/books/${id}`);
 
+      console.log("book id", id);
+
       if (!response.ok) {
           const message = `An error occurred, Book: ${response.statusText}`;
           window.alert(message);
@@ -61,10 +63,12 @@ const FeedElement = (props) => {
     return;
   }, [listing]);
 
-  return (
+  if ((typeof book.volumeInfo) === "undefined") {
+    return;
+  } else return (
     <div className="feed-single">
       <div className="image-container">
-        <img src={book.img} alt={"Book cover of " + book.title + " by " + book.author}/>
+        <img src={book.volumeInfo.imageLinks.thumbnail} alt={"Book cover of " + book.volumeInfo.title + " by " + book.volumeInfo.authors[0]}/>
         <h3>{listing.type}</h3>
       </div>
       <div className="feed-right-container">
@@ -74,8 +78,8 @@ const FeedElement = (props) => {
             <h3>@{user.username}</h3>
           </div>
           <div className="book-info-container">
-            <h2>{book.title}</h2>
-            <h3>{book.author}</h3>
+            <h2>{book.volumeInfo.title}</h2>
+            <h3>{book.volumeInfo.authors[0]}</h3>
             <h3><img className="location-icon" src="https://cdn-icons-png.flaticon.com/512/2838/2838912.png" alt="location pin"/>{user.zip_code}</h3>
           </div>
         </div>
