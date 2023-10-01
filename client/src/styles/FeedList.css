@@ -125,3 +125,8 @@ margin: 0 0 0 50px;
 .location-icon {
   height: 10px;
 }
+
+.clickable-feed {
+  text-decoration: inherit;
+  color: inherit;
+}
