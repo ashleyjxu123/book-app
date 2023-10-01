@@ -62,3 +62,8 @@ html {
   align-items: center;
 }
 
+.nav-bar > a {
+  text-decoration: none;
+  color: black;
+}
+

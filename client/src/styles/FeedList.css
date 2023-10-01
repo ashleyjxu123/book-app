@@ -2,7 +2,7 @@
 
 
 /* START: big container */
-.wrapper-feed h2 {
+.wrapper-feed {
 margin: 0 0 0 50px;
 }
 
@@ -96,11 +96,18 @@ margin: 0 0 0 50px;
   margin: 0 0 0 8px;
 }
 
-.book-info-container > h2 { /* book title */
+.book-info-container > h2, .book-info-title { /* book title */
   font-size: 14px;
   margin: 0 0 0 0;
 }
 
+.book-info-container > a {
+  text-decoration: none;
+}
+
+.book-info-title:hover {
+  cursor: pointer;
+}
 
 .book-info-container > h3 { /* author  */
   font-size: 12px;

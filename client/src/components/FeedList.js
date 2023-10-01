@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from "react-router-dom";
 // import { useParams } from "react-router";
 import '../styles/FeedList.css'
 
@@ -78,7 +79,9 @@ const FeedElement = (props) => {
             <h3>@{user.username}</h3>
           </div>
           <div className="book-info-container">
-            <h2>{book.volumeInfo.title}</h2>
+            <Link to={"/listings/" + listing._id}>
+              <h2 className="book-info-title">{book.volumeInfo.title}</h2>
+            </Link>
             <h3>{book.volumeInfo.authors[0]}</h3>
             <h3><img className="location-icon" src="https://cdn-icons-png.flaticon.com/512/2838/2838912.png" alt="location pin"/>{user.zip_code}</h3>
           </div>
@@ -102,8 +105,8 @@ const FeedElements = (props) => {
     return <FeedElement listing={listing}/>
   });
   return (
-    <div className="wrapper-feed">
-      <h2>current listings</h2>
+    <div>
+      <h2 className="wrapper-feed">current listings</h2>
       <div className="feed-container"> 
       {/* will contain all of the feed blocks below */}
         <div>

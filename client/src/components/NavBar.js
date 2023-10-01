@@ -5,7 +5,7 @@ function NavBar() {
   return (
     <>
       <div className="nav-bar">
-        <h1>bibli</h1>
+        <Link to="/"><h1 className="nav-title">bibli</h1></Link>
         <div className="right-header">
           <div>
             <input id="header-search-bar" type="text" placeholder="search"></input>
