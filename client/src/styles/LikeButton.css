@@ -1,3 +1,11 @@
-.like-button #like-circle{
-    opacity: 0;
-  }
+.active {
+  fill: black;
+} 
+
+.unactive {
+  fill: none;
+}
+
+svg:hover{
+  cursor: pointer;
+}
