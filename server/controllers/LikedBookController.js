@@ -26,6 +26,16 @@ module.exports = {
           }
     },
 
+    async getLikedBookByListingId(req, res) {
+        try {
+            const book = await LikedBook.find({listing_id: req.params.listing_id});
+            res.status(200).json(book);
+          } catch (err) {
+            console.log(err);
+            res.status(404).json({ nolikesfound: `Liked Book Not Found.`, err});
+          }
+    },
+
     async createLikedBook(req, res) {
         try {
             const book = new LikedBook(req.body);
@@ -50,7 +60,7 @@ module.exports = {
 
     async deleteLikedBook(req, res) {
         try {
-            const book = await LikedBook.findByIdAndRemove(req.params.id, req.body);
+            const book = await LikedBook.findByIdAndRemove(req.params.id);
             res.status(202).json({ likesdeletionsuccess: `Like successfully removed.`, book });
           } catch (err) {
             res.status(400).json({ likesdeletionfailure: `Unable to delete like.`, err});

@@ -10,7 +10,7 @@ module.exports = {
         }).catch(function(error) {
             res.send({
                 status: '500',
-                message: error
+                message: req.params.id
             })
         });
     }, 

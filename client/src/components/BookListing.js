@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router";
-import './BookListing.css';
+import '../styles/BookListing.css';
 
 // A single element for a listing.
 function ListingElement (props) {
@@ -84,7 +84,7 @@ export default function BookListing() {
         }
 
         async function getBook(id) {
-            console.log("book id", id);
+            // console.log("book id", id);
 
             const response = await fetch(`http://localhost:5050/books/${id}`);
             if (!response.ok) {

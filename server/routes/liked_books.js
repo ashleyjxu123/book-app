@@ -12,20 +12,20 @@ const LikedBookController = require('../controllers/LikedBookController.js');
 router.get("/all", LikedBookController.getAllLikedBooks);
 
 // @route GET api/likes/:id
-// @description Get single listing by id
+// @description Get single like by id
 // @access Public
 router.get('/:id', LikedBookController.getLikedBookById);
 
+// @route GET api/likes/listing/:id
+// @description Get single like by listing id
+// @access Public
+router.get('/listing/:id', LikedBookController.getLikedBookByListingId);
+
 
 // @route POST api/likes
-// @description add/save book
+// @description add/save like
 // @access Public
 router.post('/', LikedBookController.createLikedBook);
-
-// @route PUT api/likes/:id
-// @description Update book
-// @access Public
-router.put('/:id', LikedBookController.updateLikedBook);
 
 // @route DELETE api/likes/:id
 // @description Delete book by id

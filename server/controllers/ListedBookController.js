@@ -50,7 +50,7 @@ module.exports = {
 
     async deleteListedBook(req, res) {
         try {
-            const book = await ListedBook.findByIdAndRemove(req.params.id, req.body);
+            const book = await ListedBook.findByIdAndRemove(req.params.id);
             res.status(202).json({ listingdeletionsuccess: `Listing Successfully Deleted`, listing });
           } catch (err) {
             res.status(400).json({ listingdeletionfailure: `Unable to delete Listing.`, err});
