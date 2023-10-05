@@ -128,7 +128,6 @@ export default function FeedList() {
   //Fetches all listings from db - this will need to change for a logged in user
   useEffect(() => {
     async function getListings() {
-        // ***WILL NEED TO FIX AFTER MERGE -- changed listedbooks to listings in url
         const response = await fetch(`http://localhost:5050/listings/all`);
     
         if (!response.ok) {
