@@ -106,6 +106,7 @@ const Profile = (props) => {
           <h3>@{user.username}</h3>
         </div>
       </div>
+      <h3>active listings:</h3>
       <div className="userProfile-listings">
           {bookList}
       </div>

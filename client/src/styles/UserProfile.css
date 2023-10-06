@@ -40,12 +40,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0 5px 0 5px;
 }
 
 .profile-right-container {
   display: flex;
   flex-direction: row;
-  width: 200px;
+  width: 175px;
   text-align: center;
   justify-content: center;
   /* align-items: flex-start; */
@@ -54,6 +55,7 @@
 .profile-left-container {
   display: flex;
   flex-direction: row;
+  margin-left: 30px;
 }
 
 .profile-left-container .image-container {
