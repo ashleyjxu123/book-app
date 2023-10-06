@@ -5,7 +5,7 @@ import '../styles/UserProfile.css'
 
 const ProfileBookElement = (props) => {
   const id = props.listing; 
-  const user = props.user;
+  // const user = props.user;
 
   const [book, setBook] = useState([]);
   const [listing, setListing] = useState([]);
@@ -52,7 +52,7 @@ const ProfileBookElement = (props) => {
       // console.log("book listing", listing.book_id);
       const tempLoadedListing = await getListing();
       const tempLoadedBook = await getBook(tempLoadedListing.book_id);
-      // setListing(tempLoadedListing);
+      setListing(tempLoadedListing);
       setBook(tempLoadedBook);
     }
 
@@ -104,6 +104,10 @@ const Profile = (props) => {
         <div className="userProfile-names">
           <h2>{user.full_name}</h2>
           <h3>@{user.username}</h3>
+          <div className="userProfile-location-container">
+                <img className="location-icon" src="https://cdn-icons-png.flaticon.com/512/2838/2838912.png" alt="location pin"/>
+                <h3>{user.zip_code}</h3>
+              </div>
         </div>
       </div>
       <h3>active listings:</h3>
