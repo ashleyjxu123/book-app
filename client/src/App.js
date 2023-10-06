@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import FeedList from './components/FeedList'
 import BookListing from './components/BookListing';
 import { BrowserRouter } from "react-router-dom";
+import UserProfile from './components/UserProfile'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
          
           <Route index element={<index />}/>
         </Route>
+        <Route path="/users/:id" element={<UserProfile />}/>
         <Route path="/listings/:id" element={
             <BookListing />
         } />

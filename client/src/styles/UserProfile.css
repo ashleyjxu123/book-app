@@ -1,0 +1,68 @@
+.user-pfp img {
+  border-radius: 50%;
+}
+
+.userProfile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 100px;
+  margin-left: 100px;
+}
+
+.userProfile-user-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-bottom: 50px;
+}
+
+.userProfile-names {
+  margin-left: 15px;
+}
+
+.userProfile-names h2 {
+  margin-bottom: 0px;
+}
+
+.userProfile-names h3 {
+  margin-top: 4px;
+}
+
+.userProfile-listings {
+  display: flex;
+  flex-direction: row;
+}
+
+.userProfile-single-listing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px 0 5px;
+}
+
+.profile-right-container {
+  display: flex;
+  flex-direction: row;
+  width: 175px;
+  text-align: center;
+  justify-content: center;
+  /* align-items: flex-start; */
+}
+
+.profile-left-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 30px;
+}
+
+.profile-left-container .image-container {
+  margin-right: 20px;
+}
+
+.profile-right-container h4 {
+  font-size: 12px;
+  margin-top: 0px;
+}
