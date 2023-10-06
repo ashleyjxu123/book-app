@@ -2,6 +2,7 @@ import './App.css';
 import { Route, Routes } from "react-router-dom";
 import NavBar from './components/NavBar';
 // import Login from './pages/Login';
+import "bootstrap/dist/css/bootstrap.min.css";
 import FeedList from './components/FeedList'
 import BookListing from './components/BookListing';
 import { BrowserRouter } from "react-router-dom";

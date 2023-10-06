@@ -1,5 +1,5 @@
 // controllers/UserController.js
-
+const bcrypt = require("bcrypt");
 const User = require('../models/User');
 
 // Add param checking
@@ -49,15 +49,21 @@ module.exports = {
     },
 
     async createUser(req, res) {
-        try {
-            const user = new User(req.body);
-            await user.save();
-            res.status(200).json({ useraddsuccess: `User added successfully`, user});
-          } catch (err) {
-            // console.log(err);
-            res.status(404).json({ useraddfailure: `Unable to add user`, err });
-          }
+      const user = req.body;
+      const takenUsername = await User.findOne({username: user.username});
+      const takenEmail = await User.findOne({email: user.email});
+
+      if (takenUsername || takenEmail) {
+        res.json({useraddfailure: `Username or email already in use.`});
+      } else {
+        user.password = await bcrypt.hash(req.body.password, 5);
+
+        const dbUser = new User(user);
+        dbUser.save();
+        res.status(200).json({ useraddsuccess: `User added successfully`, user});
+      }
     },
+
 
     async updateUser(req, res) {
         try {
