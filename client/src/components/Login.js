@@ -1,8 +1,6 @@
 import {useEffect} from "react";
 import {useNavigate} from "react-router";
 
-//login page - anon home page
-
 function Login() {
   const navigate = useNavigate();
 
@@ -29,14 +27,13 @@ function Login() {
   }
 
   useEffect(() => {
-    console.log(localStorage.getItem("token"));
     fetch("http://localhost:5050/login/getUser", {
       headers: {
         "x-access-token": localStorage.getItem("token")
       }
     })
     .then(res => res.json())
-    .then(data => data.isLoggedIn ? navigate("/") : null)
+    .then(data => data.isLoggedIn ? navigate("/home") : null)
   }, []);
 
   return (

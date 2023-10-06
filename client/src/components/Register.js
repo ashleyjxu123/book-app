@@ -34,7 +34,7 @@ function Register() {
             }
         })
         .then(res => res.json)
-        .then(data => data.isLoggedIn ? navigate("/") : null);
+        .then(data => data.isLoggedIn ? navigate("/home") : null);
     }, []);
 
     return (

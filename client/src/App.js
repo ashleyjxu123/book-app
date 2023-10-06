@@ -7,6 +7,7 @@ import FeedList from './components/FeedList'
 import BookListing from './components/BookListing';
 import Login from './components/Login';
 import Register from './components/Register';
+import AnonHome from './pages/AnonHome';
 import { BrowserRouter } from "react-router-dom";
 
 
@@ -16,7 +17,8 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path="/" element={ 
+        <Route exact path="/" element={<AnonHome/>}/>
+        <Route path="/home" element={ 
               <FeedList />
 
         }>
