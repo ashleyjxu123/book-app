@@ -19,7 +19,7 @@ router.get('/:id', LikedBookController.getLikedBookById);
 // @route GET api/likes/listing/:id
 // @description Get single like by listing id
 // @access Public
-router.get('/listing/:id', LikedBookController.getLikedBookByListingId);
+router.get('/listing/:listing_id', LikedBookController.getLikedBookByListingId);
 
 
 // @route POST api/likes

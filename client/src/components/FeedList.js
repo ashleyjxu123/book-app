@@ -99,7 +99,8 @@ const FeedElement = (props) => {
           </div> */}
         </div>
       </Link>
-      <LikeButton/>
+      <LikeButton
+        listing = {listing}/>
     </div>
 
   );
