@@ -1,0 +1,11 @@
+.active {
+  fill: black;
+} 
+
+.unactive {
+  fill: none;
+}
+
+svg:hover{
+  cursor: pointer;
+}

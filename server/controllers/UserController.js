@@ -72,7 +72,7 @@ module.exports = {
 
     async deleteUser(req, res) {
         try {
-            const user = await User.findByIdAndRemove(req.params.id, req.body);
+            const user = await User.findByIdAndRemove(req.params.id);
             res.status(202).json({ userdeletionsuccess: `User Successfully Deleted`, user });
           } catch (err) {
             res.status(400).json({ userdeletionfailure: `Unable to delete user.`, err});
