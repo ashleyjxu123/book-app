@@ -63,17 +63,19 @@ const FeedElement = (props) => {
     }
 
     getAll();
+    console.log("feed element firing");
     return;
   }, [listing]);
 
-  if ((typeof book.volumeInfo) === "undefined") {
-    return;
-  } else return (
+  // if ((typeof book.volumeInfo) === "undefined") {
+  //   return;
+  // } else return (
 
+  return (
     <div className="feed-single">
       <Link className="clickable-feed-single" to={"/listings/" + listing._id}>
         <div className="image-container">
-          <img src={book.volumeInfo.imageLinks.thumbnail} alt={"Book cover of " + book.volumeInfo.title + " by " + book.volumeInfo.authors[0]}/>
+          <img src={book.volumeInfo?.imageLinks.thumbnail} alt={"Book cover of " + book.volumeInfo?.title + " by " + book.volumeInfo?.authors[0]}/>
           <h3>{listing.type}</h3>
         </div>
         <div className="feed-right-container">
@@ -84,9 +86,9 @@ const FeedElement = (props) => {
             </div>
             <div className="book-info-container">
               {/* <Link to={"/listings/" + listing._id}> */}
-                <h2 className="book-info-title">{book.volumeInfo.title}</h2>
+                <h2 className="book-info-title">{book.volumeInfo?.title}</h2>
               {/* </Link> */}
-              <h3>{book.volumeInfo.authors[0]}</h3>
+              <h3>{book.volumeInfo?.authors[0]}</h3>
               <div className="location-container">
                 <img className="location-icon" src="https://cdn-icons-png.flaticon.com/512/2838/2838912.png" alt="location pin"/>
                 <h3>{user.zip_code}</h3>
@@ -110,9 +112,11 @@ const FeedElement = (props) => {
 const FeedElements = (props) => {
   const listings = props.listings;
 
+  console.log("this is what listings looks like", listings);
   let itemList = listings.map((listing, index) => {
     return <FeedElement listing={listing} key={index}/>
   });
+  console.log("feed elements, about to call feed element")
   return (
     <div>
       <h2 className="wrapper-feed">current listings</h2>
