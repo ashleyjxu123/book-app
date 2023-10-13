@@ -23,19 +23,16 @@ function Register() {
             headers: {
                 "Content-type": "application/json"
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify(user),
+            credentials: 'include'
         })
+        .then(res => {
+            console.log(res.json);
+            setTimeout(() => {
+                navigate("/home");
+            }, 1000);
+        });
     }
-
-    useEffect(() => {
-        fetch("http://localhost:5050/login/getUser", {
-            headers: {
-                "x-access-token": localStorage.getItem("token")
-            }
-        })
-        .then(res => res.json)
-        .then(data => data.isLoggedIn ? navigate("/home") : null);
-    }, []);
 
     return (
         <form onSubmit={event => handleRegister(event)}>

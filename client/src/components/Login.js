@@ -10,31 +10,37 @@ function Login() {
     const form = e.target;
     const user = {
       username: form[0].value,
-      password: form[1].value
+      password: form[1].value,
     }
+
+    console.log(user);
 
     fetch("http://localhost:5050/login", {
       method: "POST",
       headers: {
         "Content-type": "application/JSON"
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify(user),
+      credentials: 'include'
     })
-    .then(res => res.json())
-    .then(data => {
-      localStorage.setItem("token", data.token);
+    .then(res => {
+      console.log(res.json());
+      setTimeout(() => {
+        navigate("/home");
+      }, 1000);
     })
   }
 
-  useEffect(() => {
-    fetch("http://localhost:5050/login/getUser", {
-      headers: {
-        "x-access-token": localStorage.getItem("token")
-      }
-    })
-    .then(res => res.json())
-    .then(data => data.isLoggedIn ? navigate("/home") : null)
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:5050/login/getUser", {
+  //     headers: {
+  //       "x-access-token": localStorage.getItem("token")
+  //     }
+  //   })
+  //   .then((res) => res.json())
+  //   .then(data => data.isLoggedIn ? navigate("/home") : null)
+  //   .catch(err => console.log(err));
+  // }, []);
 
   return (
     <form onSubmit={event => handleLogin(event)}>

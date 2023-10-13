@@ -1,20 +1,36 @@
 // home page before logging in
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import axios from "axios";
+import { useCookies } from "react-cookie"
 import {useNavigate} from "react-router";
 
 export default function AnonHome() {
     const navigate = useNavigate();
+    const [cookies, removeCookie] = useCookies([]);
+    const [username, setUsername] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:5050/login/getUser", {
-          headers: {
-            "x-access-token": localStorage.getItem("token")
-          }
-        })
-        .then(res => res.json())
-        .then(data => data.isLoggedIn ? navigate("/home") : null)
-      }, []);
+      const verifyCookie = async () => {
+        // if (!cookies.token) {
+        //   navigate("/login");
+        // }
+
+        const { data } = await axios.post(
+          "http://localhost:5050/auth",
+          {},
+          { withCredentials: true }
+        );
+        const { status, user } = data;
+        console.log(data);
+        setUsername(user);
+        return status
+        ? navigate("/home")
+        : (removeCookie("token"));
+        // catch(err => console.log(err));
+      };
+      verifyCookie();
+      }, [navigate, cookies, removeCookie]);
 
     return (
         <div className="anon-home">
