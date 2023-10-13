@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import AnonHome from './pages/AnonHome';
 import { BrowserRouter } from "react-router-dom";
+import UserProfile from './components/UserProfile'
 
 
 function App() {
