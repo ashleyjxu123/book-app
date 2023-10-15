@@ -12,21 +12,23 @@ export default function AnonHome() {
 
     useEffect(() => {
       const verifyCookie = async () => {
-        // if (!cookies.token) {
-        //   navigate("/login");
-        // }
 
         const { data } = await axios.post(
           "http://localhost:5050/auth",
           {},
           { withCredentials: true }
         );
-        const { status, user } = data;
+        const { status, user, id, name } = data;
         console.log(data);
         setUsername(user);
-        return status
-        ? navigate("/home")
-        : (removeCookie("token"));
+        if (status) {
+          localStorage.setItem("id", id);
+          navigate("/home");
+          return status
+        } else {
+          removeCookie("token");
+          localStorage.removeItem("id");
+        }
         // catch(err => console.log(err));
       };
       verifyCookie();

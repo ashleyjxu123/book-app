@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import LikeButton from './LikeButton.js';
-// import { useParams } from "react-router";
 import '../styles/FeedList.css'
 import '../styles/LikeButton.css'
 
 // Feeds the listing information back into server to get individual info about that listing's book and user
 const FeedElement = (props) => {
   const listing = props.listing;
+  const { state } = useLocation();
+  const loggedInUser = localStorage.getItem("id");
   const [book, setBook] = useState([]);
   const [user, setUser] = useState([]);
 
@@ -98,7 +99,8 @@ const FeedElement = (props) => {
         </div>
       </Link>
       <LikeButton
-        listing = {listing}/>
+        listing = {listing}
+        user_id = {loggedInUser || ""}/>
     </div>
 
   );

@@ -25,18 +25,11 @@ router.post('/', async (req, res) => {
                     withCredentials: true,
                     httpOnly: false,
                 });
-                // console.log(isCorrect);
-                // const payload = {
-                //     username: dbUser.username,
-                //     password: dbUser.password,
-                // }
-                // jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: 86400},
-                //     (err, token) => {
-                //         if (err) return res.json({message: `Login failed` + err});
-                //         return res.json({message: "Login success", token: "Bearer " + token});
-                //     } 
-                // )
-                res.status(200).json({ message: "User logged in successfully", success: true });
+                res.status(200).json({
+                    message: "User logged in successfully",
+                    success: true,
+                    id: dbUser._id
+                 });
 
             } else {
                 console.log(isCorrect);
@@ -46,29 +39,5 @@ router.post('/', async (req, res) => {
     })
 
 });
-
-// function verifyJWT(req, res, next) {
-//     const token = req.headers["x-access-token"]?.split(' ')[1];
-  
-//     if (token) {
-//       jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
-//         if (err) return res.json({
-//           isLoggedIn: false,
-//           message: "Failed to authenticate"
-//         })
-  
-//         req.user = {};
-//         req.user.username = decoded.username;
-//         req.user.password = decoded.password;
-//         next()
-//       })
-//     } else {
-//       res.json({message: "Incorrect token given.", isLoggedIn: false});
-//     }
-// };
-
-// router.get('/getUser', verifyJWT, (req, res) => {
-//     res.json({isLoggedIn: true, username: req.user.username});
-// });
 
 module.exports = router;

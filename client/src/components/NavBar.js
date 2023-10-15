@@ -20,6 +20,7 @@ function NavBar() {
 
   const LogOut = () => {
     removeCookie("token");
+    localStorage.removeItem("id");
     navigate("/");
   }
 
