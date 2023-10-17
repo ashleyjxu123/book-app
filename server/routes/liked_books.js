@@ -32,4 +32,9 @@ router.post('/', LikedBookController.createLikedBook);
 // @access Public
 router.delete('/:id', LikedBookController.deleteLikedBook);
 
+// @route DELETE api/likes/listing/:id
+// @description Delete book by listing id
+// @access Public
+router.delete('/listing/:id', LikedBookController.deleteLikedBookByListingId);
+
 module.exports = router;

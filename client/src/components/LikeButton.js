@@ -69,14 +69,14 @@ export default function LikeButton(props) {
             
         const like = await response.json();
         const books = await getUserLikedBooks();
-        console.log(books);
+
         if (books.indexOf(listing_id) > -1) {
-            deleteLikedBook(like._id);
-            addToUser(false);
+            deleteLikedBook();
+            updateUser(false);
 
         } else {
             addLikedBook();
-            addToUser(true);
+            updateUser(true);
         }
         return like;
     }
@@ -94,8 +94,15 @@ export default function LikeButton(props) {
         return user.books_liked; 
     }
 
-    async function deleteLikedBook(id) {
-        const response = await fetch(`http://localhost:5050/likes/${id}`, {method: "DELETE"});
+    async function deleteLikedBook() {
+        const data = {
+            "user_id": user_id
+        }
+        const response = await fetch(`http://localhost:5050/likes/listing/${listing_id}`, {
+            method: "DELETE",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data),
+        });
 
         if (!response.ok) {
             const message = `An error occurred, Like: ${response.statusText}`;
@@ -131,7 +138,7 @@ export default function LikeButton(props) {
 
     }
 
-    async function addToUser(flag) {
+    async function updateUser(flag) {
         const booksArray = await updateLikedArray(listing_id, flag);
 
         const data = {

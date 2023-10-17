@@ -19,7 +19,6 @@ export default function AnonHome() {
           { withCredentials: true }
         );
         const { status, user, id, name } = data;
-        console.log(data);
         setUsername(user);
         if (status) {
           localStorage.setItem("id", id);

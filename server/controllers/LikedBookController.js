@@ -65,7 +65,16 @@ module.exports = {
           } catch (err) {
             res.status(400).json({ likesdeletionfailure: `Unable to delete like.`, err});
           }
-    }
+    }, 
+
+    async deleteLikedBookByListingId(req, res) {
+      try {
+          const book = await LikedBook.deleteOne({listing_id: req.params.id, liked_by: req.body.user_id});
+          res.status(202).json({ likesdeletionsuccess: `Like successfully removed.`, book });
+        } catch (err) {
+          res.status(400).json({ likesdeletionfailure: `Unable to delete like.`, err});
+        }
+  },
 
 
 };
