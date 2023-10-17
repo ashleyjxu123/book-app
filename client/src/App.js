@@ -29,9 +29,11 @@ function App() {
         </Route> */}
         <Route exact path="/login" element={<Login/>}/>
         <Route exact path="/register" element={<Register/>}/>
-        <Route exact path="/listings/:id" element={
-            <BookListing />
-        } />
+        <Route element={ <PrivateRoute /> }>
+          <Route exact path="/listings/:id" element={
+              <BookListing />
+          } />
+        </Route>
       </Routes>
     </BrowserRouter>
   )
