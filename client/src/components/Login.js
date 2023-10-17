@@ -1,4 +1,3 @@
-import {useEffect} from "react";
 import {useNavigate} from "react-router";
 
 function Login() {
@@ -23,11 +22,18 @@ function Login() {
       body: JSON.stringify(user),
       credentials: 'include'
     })
-    .then(res => {
-      console.log(res.json());
-      setTimeout(() => {
-        navigate("/home");
-      }, 1000);
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      if (data.success) {
+        console.log(data.success)
+        localStorage.setItem("id", data.id)
+        setTimeout(() => {
+          navigate("/home");
+        }, 1000);
+      } else {
+        return window.alert(data.message);
+      }
     })
   }
 
