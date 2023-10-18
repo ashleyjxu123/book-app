@@ -8,15 +8,12 @@ function NavBar() {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
   const userToken = Cookies.get("token");
-  // console.log(userToken);
   var userID = '';
 
   // userToken.split('.')[1] -- middle piece of token
-  if (userToken !== 'undefined') {
+  if (((typeof userToken) !== "undefined") && (userToken !== "undefined")) {
     userID = (JSON.parse(atob(userToken.split('.')[1]))['id']);
   }  
-  console.log(userID);
-
 
   // useEffect(() => {
   //   if(!localStorage.getItem("token")) {
@@ -46,7 +43,6 @@ function NavBar() {
             <Link to="/"><img src="https://www.svgrepo.com/show/326725/notifications-circle-outline.svg" className="nav-notifs-icon" alt="bell inside circle"/></Link>
             <Link to="/"><img src="https://cdn3.iconfinder.com/data/icons/user-interface-web-1/550/web-circle-circular-round_67-512.png" className="nav-messages-icon" alt="message bubble"/></Link>
             <Link to={`/users/${userID}`}><img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Silhouette of a person" className="nav-pfp"/></Link>
-            {/* *******TEMP - linking to natasha's user******* */}
           </div>
         </div>
       </div>

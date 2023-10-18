@@ -89,6 +89,7 @@ const Profile = (props) => {
   console.log(user);
 
   const userListings = user.books_listed;
+  console.log("lstings", userListings);
 
   let bookList = userListings?.map((listing, index) => {
     return <ProfileBookElement user={user} listing={listing}/>
