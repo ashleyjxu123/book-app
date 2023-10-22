@@ -28,6 +28,9 @@ function Register() {
         })
         .then(res => {
             console.log(res.json);
+        })
+        .then(data => {
+            localStorage.setItem("id", data._id)
             setTimeout(() => {
                 navigate("/home");
             }, 1000);

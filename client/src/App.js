@@ -9,6 +9,7 @@ import Register from './components/Register';
 import AnonHome from './pages/AnonHome';
 import { BrowserRouter } from "react-router-dom";
 import UserProfile from './components/UserProfile'
+import PrivateRoute from './components/PrivateRoute';
 
 
 function App() {
@@ -20,18 +21,19 @@ function App() {
         <Route path="/" element={<AnonHome/>}>
           <Route index element={<index />}/>
         </Route>
-        <Route path="/home" element={ 
-              <FeedList />
-
-        }/>
+        <Route element={ <PrivateRoute /> }>
+          <Route exact path="/home" element={<FeedList />}/>
+        </Route>
 {/*          
           <Route index element={<index />}/>
         </Route> */}
         <Route exact path="/login" element={<Login/>}/>
         <Route exact path="/register" element={<Register/>}/>
-        <Route exact path="/listings/:id" element={
-            <BookListing />
-        } />
+        <Route element={ <PrivateRoute /> }>
+          <Route exact path="/listings/:id" element={
+              <BookListing />
+          } />
+        </Route>
       </Routes>
     </BrowserRouter>
   )

@@ -13,6 +13,10 @@ const LikedBookSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  liked_by: {
+    type: String,
+    required: true
+  },
   date_created: {
     type: Date,
     required: true
